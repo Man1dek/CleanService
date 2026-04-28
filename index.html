@@ -2163,7 +2163,7 @@
             const startDrag = (e) => {
                 isDragging = true;
                 container.style.cursor = 'ew-resize';
-                e.preventDefault();
+                if (e.cancelable) e.preventDefault();
             };
 
             const endDrag = () => {
@@ -2173,18 +2173,17 @@
 
             const onMove = (e) => {
                 if (!isDragging) return;
+                if (e.cancelable) e.preventDefault();
                 let clientX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
                 updateSlider(clientX);
             };
 
             handle.addEventListener('mousedown', startDrag);
-            container.addEventListener('touchstart', (e) => {
-                if (e.target === handle || e.target.classList.contains('ba-after') || e.target.classList.contains('ba-before')) {
-                    startDrag(e);
-                    let clientX = e.touches[0].clientX;
-                    updateSlider(clientX);
-                }
-            });
+            handle.addEventListener('touchstart', (e) => {
+                startDrag(e);
+                let clientX = e.touches[0].clientX;
+                updateSlider(clientX);
+            }, { passive: false });
 
             window.addEventListener('mouseup', endDrag);
             window.addEventListener('touchend', endDrag);
