@@ -1,0 +1,2284 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EA Haus | Editorial Excellence</title>
+    <meta name="description"
+        content="EA Haus und Grundstückservice — Professionelle Garten- und Reinigungsleistungen für Privathäuser und Wohnungen.">
+
+    <link rel="icon" type="image/png" href="logo.png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Lora:ital,wght@0,400..700;1,400..700&family=Syne:wght@400..800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* === CONFIGURATION & VARIABLES === */
+        :root {
+            --ink: #2c3e2d;
+            /* Deep Forest Green */
+            --gold: #6b9e5e;
+            /* Sage Green (Primary Accent) */
+            --gold-light: #8fad6e;
+            /* Lighter Sage */
+            --gold-warm: #a0bc80;
+            --sand: #f2f6ee;
+            /* Pale Greenish Sand */
+            --sand-dark: #e0ebd8;
+            --green-mute: #6b9e5e;
+            --green-pale: #ddeedd;
+            --charcoal: #3a4f3b;
+            --off-white: #f8fbf6;
+            --white-clean: #ffffff;
+            --white: #ffffff;
+        }
+
+        /* RESET */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        body {
+            font-family: 'Lora', serif;
+            background: var(--off-white);
+            color: var(--ink);
+            line-height: 1.8;
+            font-weight: 400;
+            opacity: 0;
+            width: 100%;
+        }
+
+        /* TYPOGRAPHY */
+        h1,
+        h2,
+        h3,
+        h4,
+        .fraunces {
+            font-family: 'Fraunces', serif;
+            font-variant-numeric: lining-nums;
+        }
+
+        .syne {
+            font-family: 'Syne', sans-serif;
+            text-transform: uppercase;
+        }
+
+        /* SELECTION & SCROLLBAR */
+        ::selection {
+            background: var(--gold);
+            color: var(--ink);
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--sand);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gold-light);
+        }
+
+        /* UTILITIES */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 8%;
+            position: relative;
+        }
+
+        .reveal {
+            opacity: 0;
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal.from-left {
+            transform: translateX(-50px);
+        }
+
+        .reveal.from-right {
+            transform: translateX(50px);
+        }
+
+        .reveal.from-bottom {
+            transform: translateY(40px);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+
+        .section-watermark {
+            position: absolute;
+            font-family: 'Fraunces', serif;
+            font-size: 22vw;
+            font-weight: 700;
+            opacity: 0.04;
+            color: var(--ink);
+            pointer-events: none;
+            bottom: -5rem;
+            right: -2rem;
+            line-height: 1;
+            z-index: 0;
+            user-select: none;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.4s ease;
+        }
+
+        nav.scrolled {
+            padding: 1.2rem 8%;
+            background: rgba(248, 251, 246, 0.94);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(44, 62, 45, 0.05);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.2rem;
+            text-decoration: none;
+        }
+
+        .nav-logo img {
+            height: 38px;
+            width: auto;
+            margin-right: 12px;
+            border-radius: 50%;
+        }
+
+        .nav-logo .ea {
+            font-family: 'Fraunces';
+            font-weight: 700;
+            color: var(--ink);
+        }
+
+        .nav-logo .dot {
+            color: var(--gold);
+            margin: 0 5px;
+        }
+
+        .nav-logo .haus {
+            font-family: 'Syne';
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            color: var(--ink);
+        }
+
+        .nav-separator {
+            height: 20px;
+            width: 1px;
+            background: rgba(28, 28, 28, 0.2);
+            margin: 0 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-family: 'Syne';
+            font-weight: 600;
+            font-size: 0.68rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--ink);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--green-mute);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            width: 25px;
+            height: 14px;
+            position: relative;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 100%;
+            height: 1.5px;
+            background: var(--ink);
+            position: absolute;
+            transition: 0.3s;
+        }
+
+        .hamburger span:nth-child(2) {
+            top: 6px;
+        }
+
+        .hamburger span:nth-child(3) {
+            top: 12px;
+        }
+
+        /* HERO */
+        .hero-wrapper {
+            overflow: hidden;
+            position: relative;
+            background: var(--sand);
+            min-height: 100vh;
+            padding: 12rem 8% 8rem;
+        }
+
+        .hero-watermark {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            font-size: 22vw;
+            font-family: 'Fraunces';
+            font-weight: 700;
+            opacity: 0.04;
+            pointer-events: none;
+            white-space: nowrap;
+            line-height: 0.8;
+        }
+
+        .hero-side-text {
+            position: absolute;
+            right: 4rem;
+            top: 50%;
+            transform: translateY(-50%);
+            writing-mode: vertical-rl;
+            font-family: 'Syne';
+            font-weight: 600;
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            color: rgba(28, 28, 28, 0.2);
+            text-transform: uppercase;
+        }
+
+        .hero-line {
+            display: block;
+            overflow: hidden;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero h1 {
+            line-height: 0.9;
+            margin-bottom: 4rem;
+        }
+
+        .h1-l1 {
+            font-family: 'Fraunces';
+            font-weight: 100;
+            font-style: italic;
+            font-size: clamp(6rem, 12vw, 13rem);
+            color: var(--ink);
+        }
+
+        .h1-l2 {
+            font-family: 'Fraunces';
+            font-weight: 700;
+            font-size: clamp(6rem, 12vw, 13rem);
+            margin-left: 20%;
+            -webkit-text-stroke: 1.5px var(--ink);
+            color: transparent;
+        }
+
+        .h1-l3 {
+            font-family: 'Fraunces';
+            font-weight: 100;
+            font-style: italic;
+            font-size: clamp(5rem, 10vw, 11rem);
+            margin-left: 10%;
+            color: var(--green-mute);
+        }
+
+        .hero-scroll-btn {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 4rem;
+        }
+
+        .hero-deco-line {
+            height: 40px;
+            width: 1px;
+            background: var(--gold);
+        }
+
+        .hero-scroll-text {
+            font-family: 'Syne';
+            font-weight: 600;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            color: var(--ink);
+            text-transform: uppercase;
+            text-decoration: none;
+        }
+
+        /* ABOUT */
+        .about-section {
+            background: #faf7f2;
+            padding: 10rem 5% 6rem 12%;
+        }
+
+        .about-row-1 {
+            display: flex;
+            align-items: flex-end;
+            gap: 6rem;
+            margin-bottom: 6rem;
+        }
+
+        .about-img-wrap {
+            width: 55%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-img {
+            width: 100%;
+            clip-path: polygon(0 0, 100% 0, 100% 88%, 92% 100%, 0 100%);
+            border-left: 6px solid var(--gold);
+            transition: transform 6s ease;
+        }
+
+        .about-img-wrap:hover .about-img {
+            transform: scale(1.02);
+        }
+
+        .about-content {
+            width: 45%;
+        }
+
+        .eyebrow {
+            font-family: 'Syne';
+            font-weight: 800;
+            font-size: 0.65rem;
+            letter-spacing: 0.25em;
+            color: var(--gold);
+            display: block;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-title {
+            font-family: 'Fraunces';
+            font-weight: 100;
+            font-style: italic;
+            font-size: clamp(2.8rem, 5vw, 5rem);
+            line-height: 1.1;
+            margin-bottom: 2rem;
+        }
+
+        .about-title b {
+            font-family: 'Fraunces';
+            font-weight: 800;
+            text-transform: uppercase;
+            -webkit-text-stroke: 1px var(--ink);
+            color: transparent;
+            display: block;
+        }
+
+        .about-p {
+            font-family: 'Lora';
+            font-style: italic;
+            font-size: 0.95rem;
+            color: #5a5a5a;
+            max-width: 400px;
+            margin-bottom: 2rem;
+        }
+
+        .about-quote {
+            border-left: 2px solid var(--gold);
+            padding-left: 1.2rem;
+            font-family: 'Lora';
+            font-style: italic;
+            font-size: 1.05rem;
+        }
+
+        .stats-row {
+            border-top: 1px solid var(--sand-dark);
+            padding-top: 3rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            padding-right: 4rem;
+        }
+
+        .stat-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1px;
+            height: 80px;
+            background: var(--sand-dark);
+        }
+
+        .stat-num {
+            font-family: 'Fraunces';
+            font-weight: 700;
+            font-size: 7rem;
+            color: var(--green-mute);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-family: 'Syne';
+            font-weight: 600;
+            font-size: 0.68rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--ink);
+            opacity: 0.5;
+        }
+
+        .gold-strip {
+            height: 4px;
+            width: 100%;
+            background: var(--green-mute);
+        }
+
+        /* SERVICES */
+        .services-section {
+            padding: 10rem 8% 6rem;
+            position: relative;
+            background: var(--off-white);
+        }
+
+        .services-category {
+            margin-bottom: 6rem;
+        }
+
+        .services-category:last-child {
+            margin-bottom: 0;
+        }
+
+        .services-category-title {
+            font-family: 'Syne';
+            font-weight: 800;
+            font-size: 0.85rem;
+            letter-spacing: 0.25em;
+            color: var(--gold);
+            margin-bottom: 3rem;
+            display: inline-block;
+            border-bottom: 1px solid var(--sand-dark);
+            padding-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .service-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--sand);
+            padding: 3rem 2.5rem;
+            border-left: 0px solid var(--gold);
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease, border-left-width 0.2s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-left: 6px solid var(--gold);
+            box-shadow: 0 15px 35px rgba(44, 62, 45, 0.05);
+        }
+
+        .service-icon {
+            font-size: 2rem;
+            color: var(--green-mute);
+            margin-bottom: 2rem;
+            opacity: 0.8;
+            font-family: 'Syne', sans-serif;
+            font-weight: 400;
+        }
+
+        .service-card h4 {
+            font-family: 'Fraunces';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 1.6rem;
+            color: var(--ink);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .service-card p {
+            font-family: 'Lora';
+            font-size: 0.95rem;
+            color: rgba(44, 62, 45, 0.7);
+            line-height: 1.7;
+        }
+
+        /* BEFORE & AFTER */
+        .ba-section {
+            background: var(--sand);
+            padding: 10rem 8% 8rem;
+            position: relative;
+        }
+
+        .ba-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .ba-item {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .ba-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4/3;
+            overflow: hidden;
+            user-select: none;
+            touch-action: none;
+            background: var(--sand-dark);
+            border-radius: 2px;
+        }
+
+        .ba-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+        }
+
+        .ba-before {
+            z-index: 1;
+        }
+
+        .ba-after {
+            z-index: 2;
+            width: 50%;
+            border-right: 2px solid var(--gold);
+        }
+
+        .ba-handle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 44px;
+            height: 44px;
+            background: var(--gold);
+            border-radius: 50%;
+            z-index: 3;
+            cursor: ew-resize;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white-clean);
+            font-family: 'Syne', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s;
+        }
+
+        .ba-handle:hover {
+            background: var(--green-mute);
+        }
+
+        .ba-label {
+            position: absolute;
+            top: 1rem;
+            padding: 0.4rem 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            font-family: 'Syne';
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            font-weight: 700;
+            z-index: 4;
+            color: var(--ink);
+            text-transform: uppercase;
+            backdrop-filter: blur(4px);
+        }
+
+        .ba-label.vorher {
+            left: 1rem;
+        }
+
+        .ba-label.nachher {
+            right: 1rem;
+        }
+
+        .ba-caption {
+            font-family: 'Lora';
+            font-style: italic;
+            font-size: 0.95rem;
+            color: rgba(44, 62, 45, 0.7);
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+
+        /* GALLERY LIGHTBOX */
+        .gallery-section {
+            background: var(--off-white);
+            color: var(--ink);
+            padding: 10rem 8% 8rem;
+            position: relative;
+            border-top: 1px solid var(--sand-dark);
+        }
+
+        .masonry {
+            column-count: 3;
+            column-gap: 2rem;
+        }
+
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 2rem;
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 2px;
+        }
+
+        .masonry-item img {
+            width: 100%;
+            display: block;
+            filter: grayscale(100%);
+            transition: filter 0.6s ease, transform 0.6s ease;
+        }
+
+        .masonry-item:hover img {
+            filter: grayscale(0%);
+            transform: scale(1.03);
+        }
+
+        .masonry-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            color: var(--white-clean);
+            padding: 4rem 1.5rem 1.5rem;
+            font-family: 'Syne';
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .masonry-item:hover .masonry-caption {
+            transform: translateY(0);
+        }
+
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 999999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .lb-img {
+            max-width: 90%;
+            max-height: 85vh;
+            object-fit: contain;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transform: scale(0.98);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .lightbox.active .lb-img {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .lb-caption {
+            position: absolute;
+            bottom: 2rem;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            color: var(--white-clean);
+            font-family: 'Syne';
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .lb-close {
+            position: absolute;
+            top: 2rem;
+            right: 3rem;
+            color: var(--white-clean);
+            font-size: 3rem;
+            cursor: pointer;
+            font-family: 'Syne', sans-serif;
+            font-weight: 300;
+            line-height: 1;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .lb-close:hover {
+            opacity: 1;
+        }
+
+        .lb-prev,
+        .lb-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--white-clean);
+            font-size: 2.5rem;
+            cursor: pointer;
+            padding: 2rem;
+            font-family: 'Syne', sans-serif;
+            user-select: none;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .lb-prev:hover,
+        .lb-next:hover {
+            opacity: 1;
+        }
+
+        .lb-prev {
+            left: 1rem;
+        }
+
+        .lb-next {
+            right: 1rem;
+        }
+
+        /* PROCESS */
+        .process-section {
+            background: var(--ink);
+            color: var(--white-clean);
+            padding: 10rem 8% 8rem 12%;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .process-header {
+            margin-bottom: 6rem;
+        }
+
+        .process-title {
+            font-family: 'Fraunces';
+            font-weight: 100;
+            font-style: italic;
+            font-size: clamp(3rem, 6vw, 6rem);
+            line-height: 1.1;
+            color: var(--white-clean);
+        }
+
+        .process-title b {
+            color: var(--green-mute);
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        .process-step {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px dashed rgba(201, 168, 76, 0.15);
+            padding: 4rem 0;
+        }
+
+        .process-step:last-child {
+            border-bottom: none;
+        }
+
+        .proc-num {
+            font-family: 'Fraunces';
+            font-weight: 700;
+            font-size: 8rem;
+            color: rgba(255, 255, 255, 0.08);
+            width: 180px;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .proc-line {
+            width: 1px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .proc-content {
+            padding-left: 2rem;
+        }
+
+        .proc-title {
+            font-family: 'Fraunces';
+            font-weight: 400;
+            font-style: italic;
+            font-size: 1.6rem;
+            color: var(--white-clean);
+            margin-bottom: 0.5rem;
+        }
+
+        .proc-p {
+            font-family: 'Lora';
+            font-size: 0.88rem;
+            color: rgba(255, 255, 255, 0.5);
+            line-height: 1.8;
+        }
+
+        /* TESTIMONIALS */
+        .testimonials-section {
+            background: var(--ink);
+            color: var(--white-clean);
+            padding: 8rem 8% 10rem;
+            display: flex;
+            gap: 8rem;
+        }
+
+        .test-col-main {
+            width: 60%;
+        }
+
+        .quote-mark {
+            font-family: 'Fraunces';
+            font-weight: 700;
+            font-size: 8rem;
+            color: var(--green-mute);
+            line-height: 0.5;
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        .main-quote {
+            font-family: 'Fraunces';
+            font-weight: 100;
+            font-style: italic;
+            font-size: 2rem;
+            color: var(--white-clean);
+            margin-bottom: 2rem;
+        }
+
+        .main-author {
+            font-family: 'Syne';
+            font-weight: 600;
+            font-size: 0.72rem;
+            letter-spacing: 0.2em;
+            color: var(--green-mute);
+            text-transform: uppercase;
+        }
+
+        .test-col-side {
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+        }
+
+        .side-test {
+            border-left: 2px solid var(--green-mute);
+            padding-left: 1.5rem;
+        }
+
+        .side-quote {
+            font-family: 'Lora';
+            font-style: italic;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+            color: var(--white-clean);
+        }
+
+        .side-author {
+            font-family: 'Syne';
+            font-weight: 600;
+            font-size: 0.65rem;
+            color: var(--green-mute);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* CONTACT */
+        .contact-section {
+            background: var(--green-pale);
+            padding: 8rem 8%;
+            position: relative;
+        }
+
+        .contact-label {
+            font-family: 'Syne';
+            font-weight: 800;
+            font-size: 0.65rem;
+            letter-spacing: 0.3em;
+            color: var(--green-mute);
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        .contact-title {
+            font-family: 'Fraunces';
+            font-weight: 100;
+            font-style: italic;
+            font-size: clamp(4rem, 8vw, 9rem);
+            color: var(--ink);
+            margin-bottom: 4rem;
+            line-height: 1;
+        }
+
+        .contact-info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: flex-start;
+        }
+
+        .contact-col a {
+            display: inline-block;
+            text-decoration: none;
+            color: var(--ink);
+        }
+
+        .contact-col h4 {
+            font-family: 'Syne';
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: var(--ink);
+            margin-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .contact-col p {
+            font-family: 'Lora';
+            font-style: italic;
+            color: rgba(44, 62, 45, 0.7);
+            font-size: 1rem;
+        }
+
+        .contact-col span {
+            font-family: 'Syne';
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            display: block;
+            color: var(--ink);
+        }
+
+        .btn-whatsapp {
+            display: inline-block;
+            background: var(--green-mute);
+            color: var(--white-clean);
+            padding: 1rem 3rem;
+            border: none;
+            font-family: 'Syne';
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            margin-top: 4rem;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-whatsapp:hover {
+            background: var(--gold-light);
+            color: var(--white-clean);
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--ink);
+            padding: 4rem 8%;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            font-family: 'Syne';
+            font-weight: 400;
+            font-size: 0.7rem;
+            color: var(--white-clean);
+            opacity: 0.5;
+        }
+
+        /* WHATSAPP FLOAT */
+        .wa-float {
+            position: fixed;
+            bottom: 2.5rem;
+            right: 2.5rem;
+            background: var(--ink);
+            border: 1px solid var(--gold-warm);
+            padding: 0.8rem 1.4rem;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .wa-float span {
+            font-family: 'Syne';
+            font-weight: 700;
+            font-size: 0.72rem;
+            letter-spacing: 0.18em;
+            color: var(--gold-warm);
+        }
+
+        .wa-float:hover {
+            background: var(--green-mute);
+            border-color: var(--green-mute);
+            transform: translateY(-3px);
+        }
+
+        .wa-float:hover span {
+            color: var(--white-clean);
+        }
+
+        .wa-float::before {
+            content: "+49 176 72374303";
+            position: absolute;
+            bottom: 100%;
+            right: 0;
+            background: var(--ink);
+            color: var(--gold-warm);
+            font-family: 'Syne';
+            font-size: 0.65rem;
+            padding: 0.4rem 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateY(0);
+            transition: all 0.3s;
+            pointer-events: none;
+            margin-bottom: 0.5rem;
+        }
+
+        .wa-float:hover::before {
+            opacity: 1;
+            transform: translateY(-8px);
+        }
+
+
+        /* SCROLL PROGRESS */
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            background: var(--green-mute);
+            z-index: 10000;
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        /* CURSOR */
+        #cursor-dot {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: var(--green-mute);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 99999;
+            transform: translate(-50%, -50%);
+            display: none;
+            transition: width 0.2s ease, height 0.2s ease, background 0.2s ease, border 0.2s ease;
+        }
+
+        #cursor-dot.dark {
+            background: var(--white-clean) !important;
+            border-color: var(--white-clean) !important;
+        }
+
+        /* MOBILE MENU OVERLAY */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: var(--sand);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2.5rem;
+            transform: translateX(100%);
+            transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+            padding: 2rem;
+        }
+
+        .mobile-nav.open {
+            transform: translateX(0);
+        }
+
+        .mobile-nav a {
+            font-family: 'Syne';
+            font-weight: 800;
+            font-size: 1.8rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--ink);
+            text-decoration: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: 0.4s;
+        }
+
+        .mobile-nav.open a {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mobile-nav a:nth-child(1) {
+            transition-delay: 0.1s;
+        }
+
+        .mobile-nav a:nth-child(2) {
+            transition-delay: 0.2s;
+        }
+
+        .mobile-nav a:nth-child(3) {
+            transition-delay: 0.3s;
+        }
+
+        .mobile-nav a:nth-child(4) {
+            transition-delay: 0.4s;
+        }
+
+        .mobile-nav a:nth-child(5) {
+            transition-delay: 0.5s;
+        }
+
+        .mobile-nav-footer {
+            position: absolute;
+            bottom: 3rem;
+            font-family: 'Syne';
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            opacity: 0.4;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 992px) {
+            .about-row-1 {
+                flex-direction: column;
+            }
+
+            .about-img-wrap,
+            .about-content {
+                width: 100%;
+            }
+
+            .service-cards {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+
+            .ba-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .masonry {
+                column-count: 2;
+            }
+
+            .testimonials-section {
+                flex-direction: column;
+                gap: 4rem;
+            }
+
+            .test-col-main,
+            .test-col-side {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            .nav-links,
+            .nav-separator {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero-wrapper {
+                padding-top: 10rem;
+            }
+
+            .h1-l1,
+            .h1-l2,
+            .h1-l3 {
+                font-size: clamp(3.5rem, 14vw, 6rem);
+            }
+
+            .h1-l2 {
+                margin-left: 8%;
+            }
+
+            .hero-side-text {
+                display: none;
+            }
+
+            .hero-watermark {
+                opacity: 0.025;
+                font-size: 40vw;
+            }
+
+            .about-img {
+                clip-path: none;
+                height: 55vw;
+            }
+
+            .about-section {
+                padding: 6rem 6%;
+            }
+
+            .services-category-title {
+                display: flex !important;
+                justify-content: space-between;
+                align-items: center;
+                border-bottom: 1px solid var(--sand-dark) !important;
+                padding-bottom: 1rem !important;
+                margin-bottom: 0 !important;
+                cursor: pointer;
+                font-size: 0.75rem !important;
+                width: 100%;
+            }
+            .services-category-title::after {
+                content: '+';
+                font-family: 'Syne', sans-serif;
+                font-size: 1.2rem;
+                color: var(--gold);
+            }
+            .services-category.open .services-category-title::after {
+                content: '−';
+            }
+            .service-cards {
+                display: block !important;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.4s ease;
+                grid-template-columns: none !important;
+                gap: 0;
+                margin-top: 0;
+            }
+            .services-category.open .service-cards {
+                max-height: 800px;
+            }
+            .service-card {
+                display: grid !important;
+                grid-template-columns: 22px 1fr;
+                grid-template-rows: auto auto;
+                gap: 0.2rem 1rem;
+                padding: 1.5rem 0;
+                border-bottom: 1px solid var(--sand-dark);
+                background: transparent !important;
+                box-shadow: none !important;
+                border-left: none !important;
+                transform: none !important;
+                min-height: auto;
+            }
+            .service-card:hover {
+                transform: none !important;
+                border-left: none !important;
+            }
+            .service-icon {
+                grid-column: 1 / 2;
+                grid-row: 1 / 2;
+                margin-bottom: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .service-icon svg {
+                width: 22px;
+                height: 22px;
+            }
+            .service-card h4 {
+                grid-column: 2 / 3;
+                grid-row: 1 / 2;
+                margin: 0;
+                font-family: 'Fraunces', serif;
+                font-style: italic;
+                font-size: 1.1rem;
+                align-self: center;
+            }
+            .service-card p {
+                grid-column: 2 / 3;
+                grid-row: 2 / 3;
+                margin: 0;
+                font-family: 'Lora', serif;
+                font-style: italic;
+                font-size: 0.8rem;
+                color: #5a5a5a;
+            }
+            .services-category {
+                margin-bottom: 1rem;
+            }
+
+            .ba-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .masonry {
+                column-count: 1;
+            }
+
+            .lb-prev,
+            .lb-next {
+                display: none;
+            }
+
+            .stats-row {
+                flex-direction: column;
+                gap: 3rem;
+            }
+
+            .stat-item::after {
+                display: none;
+            }
+
+            .stat-num {
+                font-size: 5rem;
+            }
+
+            .process-section {
+                padding: 6rem 6%;
+            }
+
+            .proc-num {
+                font-size: 5rem;
+                width: 100px;
+            }
+
+            .main-quote {
+                font-size: 1.4rem;
+            }
+
+            .quote-mark {
+                font-size: 5rem;
+            }
+
+            .contact-title {
+                font-size: clamp(3rem, 10vw, 5rem);
+            }
+
+            .contact-info-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .btn-whatsapp {
+                width: 100%;
+                text-align: center;
+            }
+
+            footer .footer-content {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div id="scroll-progress"></div>
+    <div id="cursor-dot"></div>
+
+    <!-- NAVBAR -->
+    <nav id="navbar">
+        <a href="#" class="nav-logo">
+            <img src="logo.png" alt="EA Haus Logo">
+            <span class="ea">EA</span><span class="dot">·</span><span class="haus">HAUS</span>
+        </a>
+        <div class="nav-separator"></div>
+        <div class="nav-links">
+            <a href="#about">Philosophie</a>
+            <a href="#services">Leistungen</a>
+            <a href="#vorher-nachher">Vorher & Nachher</a>
+            <a href="#galerie">Galerie</a>
+            <a href="#process">Prozess</a>
+            <a href="#contact">Kontakt</a>
+        </div>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- MOBILE NAV -->
+    <div class="mobile-nav">
+        <div class="hero-watermark" style="font-size: 40vw; top: 10%; left: 50%; transform: translateX(-50%);">MENU
+        </div>
+        <a href="#about">Philosophie</a>
+        <a href="#services">Leistungen</a>
+        <a href="#vorher-nachher">Vorher & Nachher</a>
+        <a href="#galerie">Galerie</a>
+        <a href="#process">Prozess</a>
+        <a href="#contact">Kontakt</a>
+        <div class="mobile-nav-footer">EA HAUS © 2025</div>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero-wrapper" id="home">
+        <div class="hero-watermark">HAUS</div>
+        <div class="hero-side-text">PROFESSIONELLE GARTEN- UND REINIGUNGSLEISTUNGEN FÜR IHR ZUHAUSE</div>
+        <div class="hero">
+            <h1>
+                <span class="hero-line"><span class="h1-l1">Natur</span></span>
+                <span class="hero-line"><span class="h1-l2">in jedem</span></span>
+                <span class="hero-line"><span class="h1-l3">Detail.</span></span>
+            </h1>
+            <div class="hero-scroll-btn">
+                <div class="hero-deco-line"></div>
+                <a href="#services" class="hero-scroll-text">Leistungen ansehen →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about-section reveal from-bottom" id="about">
+        <div class="section-watermark">01</div>
+        <div class="about-row-1">
+            <div class="about-img-wrap">
+                <img src="C:\Users\erise\Desktop\foto web\WhatsApp Image 2026-04-28 at 10.42.52 PM.jpeg" alt="Wartung"
+                    class="about-img">
+            </div>
+            <div class="about-content">
+                <span class="eyebrow">ERFAHRUNG</span>
+                <h2 class="about-title">
+                    Qualität, die man <b>SIEHT</b> und fühlt.</h2>
+                <p class="about-p">Ob Privathaus oder Wohnung – wir sorgen für ein makelloses Zuhause. Mit
+                    professioneller Gartenpflege und gründlicher Reinigung erhalten und steigern wir den Wert Ihrer
+                    Immobilie.</p>
+                <div class="about-quote">
+                    "Ihr Zuhause, gepflegt bis ins kleinste Detail – drinnen wie draußen."
+                </div>
+            </div>
+        </div>
+
+        <div class="stats-row stats-section">
+            <div class="stat-item reveal from-bottom">
+                <span class="stat-num" data-target="15" data-suffix="Y">0</span>
+                <span class="stat-label">Jahre Erfahrung</span>
+            </div>
+            <div class="stat-item reveal from-bottom">
+                <span class="stat-num" data-target="500" data-suffix="+">0</span>
+                <span class="stat-label">Treue Kunden</span>
+            </div>
+            <div class="stat-item reveal from-bottom">
+                <span class="stat-num" data-target="1200" data-suffix="+">0</span>
+                <span class="stat-label">Gesamte Projekte</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="gold-strip"></div>
+
+    <!-- SERVICES -->
+    <section class="services-section" id="services">
+        <div class="section-watermark">02</div>
+
+        <div class="services-category open reveal from-bottom">
+            <span class="services-category-title">Privathäuser</span>
+            <div class="service-cards">
+                <div class="service-card reveal from-bottom" style="transition-delay: 0.1s;">
+                    <div class="service-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="var(--gold)"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M16 28 V16 M16 16 C16 10, 22 8, 26 8 C26 14, 20 16, 16 16 M16 20 C16 14, 10 12, 6 12 C6 18, 12 20, 16 20" />
+                        </svg>
+                    </div>
+                    <h4>Gartenpflege</h4>
+                    <p>Umfassende Pflege für Ihren Traumgarten, von Bepflanzung bis hin zur ganzjährigen Instandhaltung.
+                    </p>
+                </div>
+                <div class="service-card reveal from-bottom" style="transition-delay: 0.2s;">
+                    <div class="service-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="var(--gold)"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="4" y="4" width="24" height="24" rx="2" />
+                            <line x1="16" y1="4" x2="16" y2="28" />
+                            <line x1="4" y1="16" x2="28" y2="16" />
+                            <line x1="8" y1="24" x2="24" y2="8" />
+                        </svg>
+                    </div>
+                    <h4>Fensterreinigung</h4>
+                    <p>Streifenfreie Reinigung von Fenstern und Glasflächen für einen glasklaren Durchblick.</p>
+                </div>
+                <div class="service-card reveal from-bottom" style="transition-delay: 0.3s;">
+                    <div class="service-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="var(--gold)"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="6" y1="6" x2="26" y2="6" />
+                            <path
+                                d="M11 14 C11 15.65 9.65 17 8 17 C6.35 17 5 15.65 5 14 C5 11 8 7 8 7 C8 7 11 11 11 14 Z" />
+                            <path
+                                d="M20 22 C20 23.65 18.65 25 17 25 C15.35 25 14 23.65 14 22 C14 19 17 15 17 15 C17 15 20 19 20 22 Z" />
+                            <path
+                                d="M27 16 C27 17.65 25.65 19 24 19 C22.35 19 21 17.65 21 16 C21 13 24 9 24 9 C24 9 27 13 27 16 Z" />
+                        </svg>
+                    </div>
+                    <h4>Terrassenreinigung</h4>
+                    <p>Tiefenreinigung mit Hochdruckreiniger, um Ihre Terrasse von Schmutz und Moos zu befreien.</p>
+                </div>
+                <div class="service-card reveal from-bottom" style="transition-delay: 0.1s;">
+                    <div class="service-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="var(--gold)"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="8" cy="24" r="3" />
+                            <circle cx="24" cy="24" r="3" />
+                            <line x1="9.5" y1="21.5" x2="26" y2="6" />
+                            <line x1="22.5" y1="21.5" x2="6" y2="6" />
+                            <circle cx="16" cy="15" r="1" />
+                        </svg>
+                    </div>
+                    <h4>Heckenschnitt</h4>
+                    <p>Präziser Form- und Rückschnitt für gesunde und ästhetisch ansprechende Hecken.</p>
+                </div>
+                <div class="service-card reveal from-bottom" style="transition-delay: 0.2s;">
+                    <div class="service-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="var(--gold)"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="16" y1="4" x2="16" y2="28" />
+                            <line x1="5.6" y1="10" x2="26.4" y2="22" />
+                            <line x1="5.6" y1="22" x2="26.4" y2="10" />
+                            <path d="M16 8 L12 4 M16 8 L20 4" />
+                            <path d="M16 24 L12 28 M16 24 L20 28" />
+                            <path d="M9 12 L5 12 M9 12 L9 8" />
+                            <path d="M23 20 L27 20 M23 20 L23 24" />
+                            <path d="M9 20 L5 20 M9 20 L9 24" />
+                            <path d="M23 12 L27 12 M23 12 L23 8" />
+                        </svg>
+                    </div>
+                    <h4>Schneeräumung</h4>
+                    <p>Zuverlässiger Winterdienst, damit Ihre Wege und Einfahrten sicher und schneefrei bleiben.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="services-category reveal from-bottom">
+            <span class="services-category-title">Wohnungen</span>
+            <div class="service-cards" style="grid-template-columns: repeat(3, 1fr);">
+                <div class="service-card reveal from-bottom" style="transition-delay: 0.1s;">
+                    <div class="service-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="var(--gold)"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="16" y1="4" x2="16" y2="24" />
+                            <rect x="6" y="24" width="20" height="4" rx="1" />
+                            <line x1="10" y1="24" x2="10" y2="28" />
+                            <line x1="14" y1="24" x2="14" y2="28" />
+                            <line x1="18" y1="24" x2="18" y2="28" />
+                            <line x1="22" y1="24" x2="22" y2="28" />
+                        </svg>
+                    </div>
+                    <h4>Bodenreinigung</h4>
+                    <p>Fachgerechte Pflege und Reinigung unterschiedlichster Bodenbeläge für langanhaltende Sauberkeit.
+                    </p>
+                </div>
+                <div class="service-card reveal from-bottom" style="transition-delay: 0.2s;">
+                    <div class="service-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="var(--gold)"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="4" y="4" width="24" height="24" rx="2" />
+                            <line x1="16" y1="4" x2="16" y2="28" />
+                            <line x1="4" y1="16" x2="28" y2="16" />
+                            <line x1="8" y1="24" x2="24" y2="8" />
+                        </svg>
+                    </div>
+                    <h4>Fensterreinigung</h4>
+                    <p>Professionelle Fensterreinigung für Ihre Wohnung, für mehr Licht und Klarheit.</p>
+                </div>
+                <div class="service-card reveal from-bottom" style="transition-delay: 0.3s;">
+                    <div class="service-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="var(--gold)"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 14 L16 4 L28 14" />
+                            <path d="M6 12 V28 H26 V12" />
+                            <path d="M16 13 L17 16 L20 17 L17 18 L16 21 L15 18 L12 17 L15 16 Z" />
+                        </svg>
+                    </div>
+                    <h4>Grundreinigung</h4>
+                    <p>Intensive Tiefenreinigung aller Räumlichkeiten, ideal bei Einzug, Auszug oder Frühjahrsputz.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BEFORE & AFTER -->
+    <section class="ba-section" id="vorher-nachher">
+        <div class="ba-grid">
+
+            <div class="ba-item reveal from-bottom">
+                <div class="ba-container">
+                    <div class="ba-label vorher">Vorher</div>
+                    <div class="ba-label nachher">Nachher</div>
+                    <img src="C:\Users\erise\Desktop\foto web\WhatsApp Image 2026-04-28 at 10.42.52 PM (1).jpeg"
+                        class="ba-img ba-before">
+                    <img src="C:\Users\erise\Desktop\foto web\WhatsApp Image 2026-04-28 at 10.42.52 PM.jpeg"
+                        class="ba-img ba-after">
+                    <div class="ba-handle">←→</div>
+                </div>
+            </div>
+
+            <div class="ba-item reveal from-bottom">
+                <div class="ba-container">
+                    <div class="ba-label vorher">Vorher</div>
+                    <div class="ba-label nachher">Nachher</div>
+                    <img src="C:\Users\erise\Desktop\foto web\WhatsApp Image 2026-04-28 at 10.49.30 PM (3).jpeg"
+                        class="ba-img ba-before">
+                    <img src="C:\Users\erise\Desktop\foto web\WhatsApp Image 2026-04-28 at 10.49.30 PM (1).jpeg"
+                        class="ba-img ba-after">
+                    <div class="ba-handle">←→</div>
+                </div>
+            </div>
+
+            <div class="ba-item reveal from-bottom">
+                <div class="ba-container">
+                    <div class="ba-label vorher">Vorher</div>
+                    <div class="ba-label nachher">Nachher</div>
+                    <img src="C:\Users\erise\Desktop\foto web\WhatsApp Image 2026-04-28 at 10.56.08 PM (6).jpeg"
+                        class="ba-img ba-before">
+                    <img src="C:\Users\erise\Desktop\foto web\WhatsApp Image 2026-04-28 at 10.56.08 PM (4).jpeg"
+                        class="ba-img ba-after">
+                    <div class="ba-handle">←→</div>
+                </div>
+            </div>
+
+            <div class="ba-item reveal from-bottom">
+                <div class="ba-container">
+                    <div class="ba-label vorher">Vorher</div>
+                    <div class="ba-label nachher">Nachher</div>
+                    <img src="C:\Users\erise\Desktop\foto web\WhatsApp Image 2026-04-28 at 11.16.32 PM (4).jpeg"
+                        class="ba-img ba-before">
+                    <img src="C:\Users\erise\Desktop\foto web\WhatsApp Image 2026-04-28 at 11.16.32 PM.jpeg"
+                        class="ba-img ba-after">
+                    <div class="ba-handle">←→</div>
+                </div>
+            </div>
+
+            <div class="ba-item reveal from-bottom">
+                <div class="ba-container">
+                    <div class="ba-label vorher">Vorher</div>
+                    <div class="ba-label nachher">Nachher</div>
+                    <img src="C:\Users\erise\Desktop\foto web\WhatsApp Image 2026-04-28 at 11.00.52 PM (5).jpeg"
+                        class="ba-img ba-before">
+                    <img src="C:\Users\erise\Desktop\foto web\WhatsApp Image 2026-04-28 at 11.00.52 PM (2).jpeg"
+                        class="ba-img ba-after">
+                    <div class="ba-handle">←→</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="gallery-section" id="galerie">
+        <div class="masonry" id="gallery-masonry">
+            <!-- Place your photo here: images/gallery-01.jpg -->
+            <div class="masonry-item reveal from-bottom" data-caption="EA Haus Galerie">
+                <img src="C:\Users\erise\Desktop\foto web\WhatsApp Image 2026-04-28 at 10.42.52 PM (1).jpeg"
+                    alt="EA Haus">
+                <div class="masonry-caption">EA Haus Galerie</div>
+            </div>
+            <!-- Place your photo here: images/gallery-02.jpg -->
+            <div class="masonry-item reveal from-bottom" data-caption="EA Haus Galerie">
+                <img src="C:\Users\erise\Desktop\foto web\WhatsApp Image 2026-04-28 at 10.43.35 PM.jpeg" alt="EA Haus">
+                <div class="masonry-caption">EA Haus Galerie</div>
+            </div>
+            <!-- Place your photo here: images/gallery-03.jpg -->
+            <div class="masonry-item reveal from-bottom" data-caption="EA Haus Galerie">
+                <img src="C:\Users\erise\Desktop\foto web\WhatsApp Image 2026-04-28 at 10.49.30 PM (5).jpeg"
+                    alt="EA Haus">
+                <div class="masonry-caption">EA Haus Galerie</div>
+            </div>
+            <!-- Place your photo here: images/gallery-04.jpg -->
+            <div class="masonry-item reveal from-bottom" data-caption="EA Haus Galerie">
+                <img src="C:\Users\erise\Desktop\foto web\WhatsApp Image 2026-04-28 at 10.49.31 PM.jpeg" alt="EA Haus">
+                <div class="masonry-caption">EA Haus Galerie</div>
+            </div>
+            <!-- Place your photo here: images/gallery-05.jpg -->
+            <div class="masonry-item reveal from-bottom" data-caption="EA Haus Galerie">
+                <img src="C:\Users\erise\Desktop\foto web\WhatsApp Image 2026-04-28 at 10.54.03 PM.jpeg" alt="EA Haus">
+                <div class="masonry-caption">EA Haus Galerie</div>
+            </div>
+            <!-- Place your photo here: images/gallery-06.jpg -->
+            <div class="masonry-item" data-caption="EA Haus Galerie" style="display: none;">
+                <img src="C:\Users\erise\Desktop\foto web\WhatsApp Image 2026-04-28 at 10.54.21 PM.jpeg" alt="EA Haus">
+                <div class="masonry-caption">EA Haus Galerie</div>
+            </div>
+            <!-- Place your photo here: images/gallery-07.jpg -->
+            <div class="masonry-item" data-caption="EA Haus Galerie" style="display: none;">
+                <img src="C:\Users\erise\Desktop\foto web\WhatsApp Image 2026-04-28 at 10.55.14 PM (2).jpeg"
+                    alt="EA Haus">
+                <div class="masonry-caption">EA Haus Galerie</div>
+            </div>
+            <!-- Place your photo here: images/gallery-08.jpg -->
+            <div class="masonry-item" data-caption="EA Haus Galerie" style="display: none;">
+                <img src="C:\Users\erise\Desktop\foto web\WhatsApp Image 2026-04-28 at 10.55.13 PM.jpeg" alt="EA Haus">
+                <div class="masonry-caption">EA Haus Galerie</div>
+            </div>
+            <!-- Place your photo here: images/gallery-09.jpg -->
+            <div class="masonry-item" data-caption="EA Haus Galerie" style="display: none;">
+                <img src="C:\Users\erise\Desktop\foto web\WhatsApp Image 2026-04-28 at 10.56.08 PM (6).jpeg"
+                    alt="EA Haus">
+                <div class="masonry-caption">EA Haus Galerie</div>
+            </div>
+            <!-- Place your photo here: images/gallery-10.jpg -->
+            <div class="masonry-item" data-caption="EA Haus Galerie" style="display: none;">
+                <img src="C:\Users\erise\Desktop\foto web\WhatsApp Image 2026-04-28 at 11.00.51 PM (5).jpeg"
+                    alt="EA Haus">
+                <div class="masonry-caption">EA Haus Galerie</div>
+            </div>
+            <!-- Place your photo here: images/gallery-11.jpg -->
+            <div class="masonry-item" data-caption="EA Haus Galerie" style="display: none;">
+                <img src="C:\Users\erise\Desktop\foto web\WhatsApp Image 2026-04-28 at 11.00.51 PM (6).jpeg"
+                    alt="EA Haus">
+                <div class="masonry-caption">EA Haus Galerie</div>
+            </div>
+            <!-- Place your photo here: images/gallery-12.jpg -->
+            <div class="masonry-item" data-caption="EA Haus Galerie" style="display: none;">
+                <img src="C:\Users\erise\Desktop\foto web\WhatsApp Image 2026-04-28 at 11.00.52 PM (4).jpeg"
+                    alt="EA Haus">
+                <div class="masonry-caption">EA Haus Galerie</div>
+            </div>
+            <!-- Place your photo here: images/gallery-13.jpg -->
+            <div class="masonry-item" data-caption="EA Haus Galerie" style="display: none;">
+                <img src="C:\Users\erise\Desktop\foto web\WhatsApp Image 2026-04-28 at 11.01.37 PM (1).jpeg"
+                    alt="EA Haus">
+                <div class="masonry-caption">EA Haus Galerie</div>
+            </div>
+            <!-- Place your photo here: images/gallery-14.jpg -->
+            <div class="masonry-item" data-caption="EA Haus Galerie" style="display: none;">
+                <img src="C:\Users\erise\Desktop\foto web\WhatsApp Image 2026-04-28 at 11.01.37 PM (3).jpeg"
+                    alt="EA Haus">
+                <div class="masonry-caption">EA Haus Galerie</div>
+            </div>
+            <!-- Place your photo here: images/gallery-15.jpg -->
+            <div class="masonry-item" data-caption="EA Haus Galerie" style="display: none;">
+                <img src="C:\Users\erise\Desktop\foto web\WhatsApp Image 2026-04-28 at 11.01.37 PM (5).jpeg"
+                    alt="EA Haus">
+                <div class="masonry-caption">EA Haus Galerie</div>
+            </div>
+            <!-- Place your photo here: images/gallery-16.jpg -->
+            <div class="masonry-item" data-caption="EA Haus Galerie" style="display: none;">
+                <img src="C:\Users\erise\Desktop\foto web\WhatsApp Image 2026-04-28 at 11.01.37 PM.jpeg" alt="EA Haus">
+                <div class="masonry-caption">EA Haus Galerie</div>
+            </div>
+            <!-- Place your photo here: images/gallery-17.jpg -->
+            <div class="masonry-item" data-caption="EA Haus Galerie" style="display: none;">
+                <img src="C:\Users\erise\Desktop\foto web\WhatsApp Image 2026-04-28 at 11.16.32 PM (4).jpeg"
+                    alt="EA Haus">
+                <div class="masonry-caption">EA Haus Galerie</div>
+            </div>
+            <!-- Place your photo here: images/gallery-18.jpg -->
+            <div class="masonry-item" data-caption="EA Haus Galerie" style="display: none;">
+                <img src="C:\Users\erise\Desktop\foto web\WhatsApp Image 2026-04-28 at 10.55.13 PM.jpeg" alt="EA Haus">
+                <div class="masonry-caption">EA Haus Galerie</div>
+            </div>
+            <!-- Place your photo here: images/gallery-19.jpg -->
+            <div class="masonry-item" data-caption="EA Haus Galerie" style="display: none;">
+                <img src="C:\Users\erise\Desktop\foto web\WhatsApp Image 2026-04-28 at 11.16.32 PM (3).jpeg"
+                    alt="EA Haus">
+                <div class="masonry-caption">EA Haus Galerie</div>
+            </div>
+            <!-- Place your photo here: images/gallery-20.jpg -->
+            <div class="masonry-item" data-caption="EA Haus Galerie" style="display: none;">
+                <img src="C:\Users\erise\Desktop\foto web\WhatsApp Image 2026-04-28 at 11.16.32 PM (1).jpeg"
+                    alt="EA Haus">
+                <div class="masonry-caption">EA Haus Galerie</div>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 3rem;">
+            <button id="load-more-btn" class="btn-whatsapp reveal from-bottom"
+                style="background: var(--ink); color: var(--white-clean); border: none;">Mehr anzeigen</button>
+        </div>
+    </section>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox">
+        <span class="lb-close" id="lb-close">&times;</span>
+        <span class="lb-prev" id="lb-prev">&#8592;</span>
+        <img src="" alt="" class="lb-img" id="lb-img">
+        <div class="lb-caption" id="lb-caption"></div>
+        <span class="lb-next" id="lb-next">&#8594;</span>
+    </div>
+
+    <!-- PROCESS -->
+    <section class="process-section" id="process">
+        <div class="process-header reveal from-bottom">
+            <span class="eyebrow">WIE WIR ARBEITEN</span>
+            <h2 class="process-title">Unser Prozess, <br><b>vom Wort zur Tat.</b></h2>
+        </div>
+
+        <div class="process-step reveal from-left">
+            <div class="proc-num">01</div>
+            <div class="proc-line"></div>
+            <div class="proc-content">
+                <h4 class="proc-title">Kontakt</h4>
+                <p class="proc-p">Schreiben Sie uns oder rufen Sie an. Antwort innerhalb von 24 Stunden.</p>
+            </div>
+        </div>
+        <div class="process-step reveal from-left">
+            <div class="proc-num">02</div>
+            <div class="proc-line"></div>
+            <div class="proc-content">
+                <h4 class="proc-title">Vor-Ort-Bewertung</h4>
+                <p class="proc-p">Wir kommen zu Ihrem Objekt, hören zu und messen jedes Detail.</p>
+            </div>
+        </div>
+        <div class="process-step reveal from-left">
+            <div class="proc-num">03</div>
+            <div class="proc-line"></div>
+            <div class="proc-content">
+                <h4 class="proc-title">Arbeitsplan</h4>
+                <p class="proc-p">Wir senden Ihnen ein klares Angebot, ohne Preisüberraschungen.</p>
+            </div>
+        </div>
+        <div class="process-step reveal from-left">
+            <div class="proc-num">04</div>
+            <div class="proc-line"></div>
+            <div class="proc-content">
+                <h4 class="proc-title">Ausführung</h4>
+                <p class="proc-p">Die Arbeit beginnt am vereinbarten Datum. Sie genießen das Ergebnis.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials-section">
+        <div class="test-col-main reveal from-left">
+            <span class="quote-mark">“</span>
+            <p class="main-quote">Hervorragender Service! Der präzise Heckenschnitt und die Pflege haben unseren Garten
+                komplett in eine Oase der Ruhe verwandelt.</p>
+            <span class="main-author">Lukas M. — München</span>
+        </div>
+        <div class="test-col-side reveal from-right">
+            <div class="side-test">
+                <p class="side-quote">Die Grundreinigung unserer Wohnung war erstklassig. Die Böden glänzen und alles
+                    ist makellos sauber. Sehr zufrieden!</p>
+                <span class="side-author">Sarah K.</span>
+            </div>
+            <div class="side-test">
+                <p class="side-quote">Dank der professionellen Terrassen- und Fensterreinigung erstrahlt unser Haus
+                    wieder im besten Licht. Sehr zu empfehlen!</p>
+                <span class="side-author">Markus H.</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact-section" id="contact">
+        <div class="section-watermark">04</div>
+        <span class="contact-label">FINDEN SIE UNS</span>
+        <h2 class="contact-title" style="margin-bottom: 1.5rem;">Lassen Sie uns beginnen.</h2>
+        <p style="font-family: 'Lora'; font-size: 1.05rem; color: rgba(44, 62, 45, 0.7); margin-bottom: 4rem; max-width: 600px;"
+            class="reveal from-bottom">Ob Privathaus oder Wohnung – kontaktieren Sie uns noch heute für ein
+            maßgeschneidertes Angebot rund um Gartenpflege und Reinigung.</p>
+
+        <div class="contact-info-grid reveal from-bottom">
+            <div class="contact-col">
+                <a href="tel:+4917672374303">
+                    <h4>+49 176 72374303</h4>
+                </a>
+                <p>cleanservice.ea@gmail.com</p>
+            </div>
+            <div class="contact-col">
+                <span>Montag – Samstag</span>
+                <span>07:00 – 19:00</span>
+            </div>
+        </div>
+
+        <a href="https://wa.me/4917672374303" target="_blank" class="btn-whatsapp reveal from-bottom">WHATSAPP →</a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-left">© 2025 EA Haus und Grundstückservice</div>
+            <div class="footer-right">cleanservice.ea@gmail.com</div>
+        </div>
+    </footer>
+
+    <!-- WA FLOAT -->
+    <a href="https://wa.me/4917672374303" target="_blank" class="wa-float">
+        <span>WA →</span>
+    </a>
+
+    <script>
+        /* === JAVASCRIPT LOGIC === */
+
+        // 1. Body Entrance
+        window.addEventListener('DOMContentLoaded', () => {
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 0.6s ease';
+                document.body.style.opacity = '1';
+            }, 100);
+
+            // Hero stagger entrance
+            const heroLines = document.querySelectorAll('.hero-line');
+            heroLines.forEach((line, i) => {
+                const span = line.firstElementChild;
+                span.style.opacity = '0';
+                span.style.transform = 'translateX(-35px)';
+                span.style.transition = 'opacity 0.9s ease, transform 0.9s ease';
+                setTimeout(() => {
+                    span.style.opacity = '1';
+                    span.style.transform = 'translateX(0)';
+                }, 200 + (i * 200));
+            });
+
+            // Hero deco line grow
+            const heroDeco = document.querySelector('.hero-deco-line');
+            if (heroDeco) {
+                heroDeco.style.width = '0';
+                setTimeout(() => {
+                    heroDeco.style.transition = 'width 1s ease';
+                    heroDeco.style.width = '60px';
+                }, 900);
+            }
+        });
+
+        // 2. Navbar Scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            nav.classList.toggle('scrolled', window.scrollY > 50);
+
+            // Scroll Progress
+            const scrolled = window.scrollY;
+            const total = document.body.scrollHeight - window.innerHeight;
+            const progressBar = document.getElementById('scroll-progress');
+            if (progressBar) progressBar.style.width = (scrolled / total * 100) + '%';
+        });
+
+        // 3. Hamburger Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const mobileNav = document.querySelector('.mobile-nav');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('open');
+            mobileNav.classList.toggle('open');
+            document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+        });
+
+        // 4. Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const href = this.getAttribute('href');
+
+                if (href === '#') {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else {
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+
+                mobileNav.classList.remove('open');
+                hamburger.classList.remove('open');
+                document.body.style.overflow = '';
+            });
+        });
+
+
+        // 5. Cursor Logic (Desktop)
+        if (window.innerWidth > 768) {
+            const dot = document.getElementById('cursor-dot');
+            dot.style.display = 'block';
+            document.body.style.cursor = 'none';
+
+            let mouseX = 0, mouseY = 0;
+            let dotX = 0, dotY = 0;
+
+            document.addEventListener('mousemove', e => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+
+            function animateCursor() {
+                dotX += (mouseX - dotX) * 0.15;
+                dotY += (mouseY - dotY) * 0.15;
+                dot.style.left = dotX + 'px';
+                dot.style.top = dotY + 'px';
+                requestAnimationFrame(animateCursor);
+            }
+            animateCursor();
+
+            document.querySelectorAll('a, button, .hamburger').forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    dot.style.width = '32px';
+                    dot.style.height = '32px';
+                    dot.style.background = 'transparent';
+                    dot.style.border = '1.5px solid var(--gold)';
+                    if (el.closest('.process-section') || el.closest('.testimonials-section') || el.closest('footer')) {
+                        dot.style.borderColor = 'var(--white-clean)';
+                    }
+                });
+                el.addEventListener('mouseleave', () => {
+                    dot.style.width = '10px';
+                    dot.style.height = '10px';
+                    dot.style.background = '';
+                    dot.style.border = '';
+                });
+            });
+
+            // Toggle dark cursor on dark backgrounds
+            document.querySelectorAll('.process-section, .testimonials-section, footer').forEach(el => {
+                el.addEventListener('mouseenter', () => dot.classList.add('dark'));
+                el.addEventListener('mouseleave', () => dot.classList.remove('dark'));
+            });
+        }
+
+        // 6. Intersection Observer
+        const revealEls = document.querySelectorAll('.reveal');
+        const observerOptions = { threshold: 0.15 };
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Group stagger
+                    const parent = entry.target.parentElement;
+                    const group = parent.querySelectorAll('.reveal');
+                    group.forEach((el, i) => {
+                        setTimeout(() => el.classList.add('visible'), i * 120);
+                    });
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        revealEls.forEach(el => revealObserver.observe(el));
+
+        // 7. Count Up Stats
+        function countUp(el) {
+            const target = parseInt(el.getAttribute('data-target'));
+            const suffix = el.getAttribute('data-suffix') || '';
+            const duration = 1800;
+            const startTime = performance.now();
+
+            function update(now) {
+                const elapsed = now - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const current = Math.floor(progress * target);
+                el.textContent = current + suffix;
+
+                if (progress < 1) requestAnimationFrame(update);
+                else el.textContent = target + suffix;
+            }
+            requestAnimationFrame(update);
+        }
+
+        const statsSection = document.querySelector('.stats-section');
+        if (statsSection) {
+            const statsObserver = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting) {
+                    statsSection.querySelectorAll('[data-target]').forEach(el => countUp(el));
+                    statsObserver.unobserve(statsSection);
+                }
+            }, { threshold: 0.5 });
+            statsObserver.observe(statsSection);
+        }
+
+        // 8. Before & After Sliders
+        const baContainers = document.querySelectorAll('.ba-container');
+        baContainers.forEach(container => {
+            const afterImg = container.querySelector('.ba-after');
+            const handle = container.querySelector('.ba-handle');
+            let isDragging = false;
+
+            const updateSlider = (x) => {
+                const rect = container.getBoundingClientRect();
+                let pct = (x - rect.left) / rect.width;
+                pct = Math.max(0, Math.min(1, pct));
+                afterImg.style.width = (pct * 100) + '%';
+                handle.style.left = (pct * 100) + '%';
+            };
+
+            const startDrag = (e) => {
+                isDragging = true;
+                container.style.cursor = 'ew-resize';
+                e.preventDefault();
+            };
+
+            const endDrag = () => {
+                isDragging = false;
+                container.style.cursor = 'default';
+            };
+
+            const onMove = (e) => {
+                if (!isDragging) return;
+                let clientX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+                updateSlider(clientX);
+            };
+
+            handle.addEventListener('mousedown', startDrag);
+            container.addEventListener('touchstart', (e) => {
+                if (e.target === handle || e.target.classList.contains('ba-after') || e.target.classList.contains('ba-before')) {
+                    startDrag(e);
+                    let clientX = e.touches[0].clientX;
+                    updateSlider(clientX);
+                }
+            });
+
+            window.addEventListener('mouseup', endDrag);
+            window.addEventListener('touchend', endDrag);
+
+            window.addEventListener('mousemove', onMove);
+            window.addEventListener('touchmove', onMove, { passive: false });
+        });
+
+        // 9. Gallery Lightbox & Load More
+        const allMasonryItems = Array.from(document.querySelectorAll('.masonry-item'));
+        const loadMoreBtn = document.getElementById('load-more-btn');
+        let visibleCount = 5;
+
+        if (loadMoreBtn) {
+            loadMoreBtn.addEventListener('click', () => {
+                const nextCount = Math.min(visibleCount + 5, allMasonryItems.length);
+                for (let i = visibleCount; i < nextCount; i++) {
+                    const item = allMasonryItems[i];
+                    item.style.display = 'block';
+                    item.classList.add('reveal', 'from-bottom');
+                    void item.offsetWidth; // trigger reflow
+                    item.classList.add('visible');
+                }
+                visibleCount = nextCount;
+
+                if (visibleCount >= allMasonryItems.length) {
+                    loadMoreBtn.textContent = 'Alle Fotos geladen';
+                    loadMoreBtn.style.opacity = '0.4';
+                    loadMoreBtn.style.pointerEvents = 'none';
+                }
+            });
+        }
+
+        const lightbox = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lb-img');
+        const lbCaption = document.getElementById('lb-caption');
+        const lbClose = document.getElementById('lb-close');
+        const lbPrev = document.getElementById('lb-prev');
+        const lbNext = document.getElementById('lb-next');
+        let currentImgIndex = 0;
+
+        const openLightbox = (index) => {
+            currentImgIndex = index;
+            const item = allMasonryItems[index];
+            const img = item.querySelector('img');
+            lbImg.src = img.src;
+            lbCaption.textContent = item.getAttribute('data-caption');
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        };
+
+        const closeLightbox = () => {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        };
+
+        const navigateLightbox = (direction) => {
+            currentImgIndex += direction;
+            if (currentImgIndex < 0) currentImgIndex = allMasonryItems.length - 1;
+            if (currentImgIndex >= allMasonryItems.length) currentImgIndex = 0;
+            openLightbox(currentImgIndex);
+        };
+
+        allMasonryItems.forEach((item, index) => {
+            item.addEventListener('click', () => openLightbox(index));
+        });
+
+        lbClose.addEventListener('click', closeLightbox);
+        lbPrev.addEventListener('click', () => navigateLightbox(-1));
+        lbNext.addEventListener('click', () => navigateLightbox(1));
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') navigateLightbox(-1);
+            if (e.key === 'ArrowRight') navigateLightbox(1);
+        });
+
+        // 10. Mobile Services Accordion
+        const serviceTitles = document.querySelectorAll('.services-category-title');
+        serviceTitles.forEach(title => {
+            title.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    const category = title.closest('.services-category');
+                    category.classList.toggle('open');
+                }
+            });
+        });
+
+    </script>
+</body>
+
+</html>
