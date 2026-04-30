@@ -4,9 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E&A Clean Service | Editorial Excellence</title>
+    <title>E&A Clean Service | Garten- & Reinigungsleistungen</title>
     <meta name="description"
         content="E&A Clean Service und Grundstückservice — Professionelle Garten- und Reinigungsleistungen für Privathäuser und Wohnungen.">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cleanserviceea.netlify.app/">
+    <meta property="og:title" content="E&A Clean Service | Garten- & Reinigungsleistungen">
+    <meta property="og:description" content="Professionelle Garten- und Reinigungsleistungen für Privathäuser und Wohnungen.">
+    <meta property="og:image" content="https://cleanserviceea.netlify.app/images/img_01.jpg">
 
     <link rel="icon" type="image/png" href="logo.png">
 
@@ -1092,7 +1099,7 @@
         }
 
         .wa-float::before {
-            content: "+49 176 72374303";
+            content: "WhatsApp Kontakt";
             position: absolute;
             bottom: 100%;
             right: 0;
@@ -1471,7 +1478,7 @@
     <!-- NAVBAR -->
     <nav id="navbar">
         <a href="#" class="nav-logo">
-            <img src="logo.png" alt="E&A Clean Service Logo">
+            <img src="logo.png" alt="E&A Clean Service Logo" width="40" height="40" onerror="this.src='https://via.placeholder.com/40x40?text=EA'">
             <span class="ea">E&A</span><span class="dot">·</span><span class="haus">Clean Service</span>
         </a>
         <div class="nav-separator"></div>
@@ -1921,7 +1928,7 @@
                 Wir legen großen Wert auf die Zufriedenheit unserer Kunden. Teilen Sie Ihre Erfahrungen mit uns und
                 helfen Sie anderen, den besten Service für Haus und Garten zu finden.
             </p>
-            <a href="https://wa.me/4917672374303" target="_blank" class="btn-whatsapp"
+            <a href="https://wa.me/4917672374303" target="_blank" rel="noopener noreferrer" class="btn-whatsapp"
                 style="display: inline-block; width: fit-content; padding: 1rem 3rem;">
                 Bewertung schreiben →
             </a>
@@ -1942,7 +1949,7 @@
                 <a href="tel:+4917672374303">
                     <h4>+49 176 72374303</h4>
                 </a>
-                <p>cleanservice.ea@gmail.com</p>
+                <p><a href="mailto:cleanservice.ea@gmail.com" style="color: inherit; text-decoration: none;">cleanservice.ea@gmail.com</a></p>
             </div>
             <div class="contact-col">
                 <span>Montag – Freitag</span>
@@ -1950,7 +1957,7 @@
             </div>
         </div>
 
-        <a href="https://wa.me/4917672374303" target="_blank" class="btn-whatsapp reveal from-bottom">WHATSAPP →</a>
+        <a href="https://wa.me/4917672374303" target="_blank" rel="noopener noreferrer" class="btn-whatsapp reveal from-bottom">WHATSAPP →</a>
     </section>
 
     <!-- FOOTER -->
@@ -1962,7 +1969,7 @@
     </footer>
 
     <!-- WA FLOAT -->
-    <a href="https://wa.me/4917672374303" target="_blank" class="wa-float">
+    <a href="https://wa.me/4917672374303" target="_blank" rel="noopener noreferrer" class="wa-float">
         <span>WA →</span>
     </a>
 
@@ -2044,53 +2051,59 @@
         });
 
 
-        // 5. Cursor Logic (Desktop)
-        if (window.innerWidth > 768) {
-            const dot = document.getElementById('cursor-dot');
-            dot.style.display = 'block';
-            document.body.style.cursor = 'none';
-
-            let mouseX = 0, mouseY = 0;
-            let dotX = 0, dotY = 0;
-
-            document.addEventListener('mousemove', e => {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-            });
-
-            function animateCursor() {
-                dotX += (mouseX - dotX) * 0.15;
-                dotY += (mouseY - dotY) * 0.15;
-                dot.style.left = dotX + 'px';
-                dot.style.top = dotY + 'px';
-                requestAnimationFrame(animateCursor);
+        // 5. Cursor Logic
+        const dot = document.getElementById('cursor-dot');
+        function initCursor() {
+            if (window.innerWidth > 768 && !('ontouchstart' in window)) {
+                dot.style.display = 'block';
+                document.body.style.cursor = 'none';
+            } else {
+                dot.style.display = 'none';
+                document.body.style.cursor = '';
             }
-            animateCursor();
-
-            document.querySelectorAll('a, button, .hamburger').forEach(el => {
-                el.addEventListener('mouseenter', () => {
-                    dot.style.width = '32px';
-                    dot.style.height = '32px';
-                    dot.style.background = 'transparent';
-                    dot.style.border = '1.5px solid var(--gold)';
-                    if (el.closest('.process-section') || el.closest('.testimonials-section') || el.closest('footer')) {
-                        dot.style.borderColor = 'var(--white-clean)';
-                    }
-                });
-                el.addEventListener('mouseleave', () => {
-                    dot.style.width = '10px';
-                    dot.style.height = '10px';
-                    dot.style.background = '';
-                    dot.style.border = '';
-                });
-            });
-
-            // Toggle dark cursor on dark backgrounds
-            document.querySelectorAll('.process-section, .testimonials-section, footer').forEach(el => {
-                el.addEventListener('mouseenter', () => dot.classList.add('dark'));
-                el.addEventListener('mouseleave', () => dot.classList.remove('dark'));
-            });
         }
+        initCursor();
+        window.addEventListener('resize', initCursor);
+
+        let mouseX = 0, mouseY = 0;
+        let dotX = 0, dotY = 0;
+
+        document.addEventListener('mousemove', e => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animateCursor() {
+            dotX += (mouseX - dotX) * 0.15;
+            dotY += (mouseY - dotY) * 0.15;
+            dot.style.left = dotX + 'px';
+            dot.style.top = dotY + 'px';
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        document.querySelectorAll('a, button, .hamburger').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                dot.style.width = '32px';
+                dot.style.height = '32px';
+                dot.style.background = 'transparent';
+                dot.style.border = '1.5px solid var(--gold)';
+                if (el.closest('.process-section') || el.closest('.testimonials-section') || el.closest('footer')) {
+                    dot.style.borderColor = 'var(--white-clean)';
+                }
+            });
+            el.addEventListener('mouseleave', () => {
+                dot.style.width = '10px';
+                dot.style.height = '10px';
+                dot.style.background = '';
+                dot.style.border = '';
+            });
+        });
+
+        document.querySelectorAll('.process-section, .testimonials-section, footer').forEach(el => {
+            el.addEventListener('mouseenter', () => dot.classList.add('dark'));
+            el.addEventListener('mouseleave', () => dot.classList.remove('dark'));
+        });
 
         // 6. Intersection Observer
         const revealEls = document.querySelectorAll('.reveal');
